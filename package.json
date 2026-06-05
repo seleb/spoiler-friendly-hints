@@ -1,0 +1,22 @@
+{
+	"name": "spoiler-friendly-hints",
+	"version": "0.0.1",
+	"description": "Converts plaintext into a simple html format with nested collapsible sections",
+	"author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:seleb/spoiler-friendly-hints.git"
+	},
+	"keywords": [
+		"hints",
+		"txt",
+		"plaintext",
+		"html",
+		"spoilers"
+	],
+	"scripts": {
+	},
+	"devDependencies": {
+	}
+}
