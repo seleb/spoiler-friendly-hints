@@ -31,7 +31,8 @@
 	"scripts": {
 		"build": "vite build",
 		"test": "vitest",
-		"prepare": "npm run build"
+		"prepare": "npm run build",
+		"preversion": "npm run build"
 	},
 	"devDependencies": {
 		"@types/node": "^25.9.2",
