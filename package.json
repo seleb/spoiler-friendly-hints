@@ -1,6 +1,7 @@
 {
 	"name": "spoiler-friendly-hints",
 	"version": "0.0.1",
+	"type": "module",
 	"description": "Converts plaintext into a simple html format with nested collapsible sections",
 	"author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
 	"license": "MIT",
@@ -15,8 +16,21 @@
 		"html",
 		"spoilers"
 	],
+	"main": "./dist/spoiler-friendly-hints.umd.cjs",
+	"module": "./dist/spoiler-friendly-hints.js",
+	"exports": {
+		".": {
+			"import": "./dist/spoiler-friendly-hints.js",
+			"require": "./dist/spoiler-friendly-hints.umd.cjs"
+		}
+	},
+	"files": [
+		"dist/**"
+	],
 	"scripts": {
+		"build": "vite build",
 	},
 	"devDependencies": {
+		"vite": "^8.0.16",
 	}
 }
