@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>My Title | Hints</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<meta name="theme-color" content="#0F0">
+	<meta name="generator" content="vitest vTEST" />
+
+	<style>
+		html {
+			--bg: #0F0;
+			--text: #F00;
+			--accent: #00F;
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'font', 'Courier New', Courier, monospace;
+			scrollbar-gutter: stable;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			margin-inline-start: 0.5em;
+		}
+
+		li {
+			font-style: italic;
+		}
+
+		details {
+			font-style: initial;
+			border: solid 1px transparent;
+		}
+
+		details[open] {
+			border-left-color: var(--accent);
+			border-top-color: var(--accent);
+		}
+
+		summary {
+			cursor: pointer;
+			color: var(--accent);
+			padding: 0.25rem;
+		}
+
+		summary:has(> .highlight) {
+			background-color: rgba(from var(--text) r g b / 0.5);
+			color: var(--bg);
+		}
+
+		a {
+			color: var(--accent);
+		}
+
+		summary:hover,
+		summary:focus {
+			color: inherit;
+			background-color: rgba(from var(--text) r g b / 0.2);
+		}
+
+		details i,
+		details q {
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>My Title | Hints</h1>
+
+	<p>This is a list of hints for <a href="https://test.com">My Title</a>. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>
+
+	
+	<details id="h2a">
+		<summary>hints</summary>
+		<ul>
+			<li>
+				<details id="he8">
+					<summary>foo</summary>
+					<ul>
+						<li>
+							<details id="h87">
+								<summary>bar</summary>
+								<ul>
+									<li>
+										<details id="h85">
+											<summary>baz<span class="highlight"></span></summary>
+											<ul>
+												<li>
+													<details id="h0e">
+														<summary>!!! alice</summary>
+														<ul>
+															<li>
+																bob
+															</li>
+														</ul>
+													</details>
+												</li>
+											</ul>
+										</details>
+									</li>
+								</ul>
+							</details>
+						</li>
+					</ul>
+				</details>
+			</li>
+		</ul>
+	</details>
+
+	<script>
+		let openingA = false;
+		let openingB = false;
+		function openHintsFromHash(event) {
+			if (openingB) return;
+			openingA = true;
+			const state = (event ? new URL(event.newURL).hash : location.hash).split('|').filter(i => i && i !== '#').reduce((acc, i) => {
+				acc[i] = true;
+				return acc;
+			}, {});
+			document.querySelectorAll('details').forEach(elDetails => {
+				if (elDetails.open !== state[elDetails]) elDetails.open = state[elDetails.id];
+			});
+			openingA = false;
+		}
+		window.addEventListener('hashchange', openHintsFromHash);
+		openHintsFromHash();
+
+		document.querySelectorAll('details').forEach(elDetails => {
+			elDetails.addEventListener('toggle', (event) => {
+				if (openingA) return;
+				openingB = true;
+				const hashOld = location.hash;
+				const hashNewArr = hashOld.split('|').filter(i => i && i !== '#' && i !== event.currentTarget.id);
+				if (event.currentTarget.open) {
+					hashNewArr.push(event.currentTarget.id);
+				}
+				hashNewArr.unshift('#');
+				const hashNew = hashNewArr.sort().join('|');
+				if (hashOld !== hashNew) location.hash = hashNew;
+				openingB = false;
+				event.stopPropagation();
+			});
+		});
+	</script>
+</body>
+
+</html>
