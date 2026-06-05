@@ -16,6 +16,7 @@
 		"html",
 		"spoilers"
 	],
+	"types": "./dist/index.d.ts",
 	"main": "./dist/spoiler-friendly-hints.umd.cjs",
 	"module": "./dist/spoiler-friendly-hints.js",
 	"exports": {
@@ -31,6 +32,8 @@
 		"build": "vite build",
 	},
 	"devDependencies": {
+		"typescript": "^6.0.3",
+		"unplugin-dts": "^1.0.2",
 		"vite": "^8.0.16",
 	}
 }
