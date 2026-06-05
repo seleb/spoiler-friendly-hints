@@ -7,7 +7,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:seleb/spoiler-friendly-hints.git"
+		"url": "git+ssh://git@github.com/seleb/spoiler-friendly-hints.git"
 	},
 	"keywords": [
 		"hints",
