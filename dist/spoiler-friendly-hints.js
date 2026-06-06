@@ -1,6 +1,6 @@
 var e = {
 	name: "spoiler-friendly-hints",
-	version: "1.0.2",
+	version: "1.0.3",
 	type: "module",
 	description: "Converts plaintext into a simple html format with nested collapsible sections",
 	author: "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -21,7 +21,8 @@ var e = {
 	module: "./dist/spoiler-friendly-hints.js",
 	exports: { ".": {
 		import: "./dist/spoiler-friendly-hints.js",
-		require: "./dist/spoiler-friendly-hints.umd.cjs"
+		require: "./dist/spoiler-friendly-hints.umd.cjs",
+		types: "./dist/src/index.d.ts"
 	} },
 	files: ["dist/**"],
 	scripts: {
