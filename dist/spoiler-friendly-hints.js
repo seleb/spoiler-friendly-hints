@@ -1,18 +1,6 @@
-//#region \0rolldown/runtime.js
-var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescriptor, r = Object.getOwnPropertyNames, i = Object.getPrototypeOf, a = Object.prototype.hasOwnProperty, o = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t.exports), s = (e, i, o, s) => {
-	if (i && typeof i == "object" || typeof i == "function") for (var c = r(i), l = 0, u = c.length, d; l < u; l++) d = c[l], !a.call(e, d) && d !== o && t(e, d, {
-		get: ((e) => i[e]).bind(null, d),
-		enumerable: !(s = n(i, d)) || s.enumerable
-	});
-	return e;
-}, c = /* @__PURE__ */ ((n, r, a) => (a = n == null ? {} : e(i(n)), s(r || !n || !n.__esModule ? t(a, "default", {
-	value: n,
-	enumerable: !0
-}) : a, n)))((/* @__PURE__ */ o(((e, t) => {
-	t.exports = {};
-})))(), 1), l = {
+var e = {
 	name: "spoiler-friendly-hints",
-	version: "1.0.1",
+	version: "1.0.2",
 	type: "module",
 	description: "Converts plaintext into a simple html format with nested collapsible sections",
 	author: "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -52,35 +40,35 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 };
 //#endregion
 //#region src/index.ts
-function u(e, t) {
-	return Math.log10(e) / Math.log10(t);
+function t(e) {
+	return `${e.split("").reduce((e, t) => e + (t.charCodeAt(0) || 0), 0).toString(36)}${e.length.toString(36)}`;
 }
-function d(e, { preamble: t = !0, title: n = "", preambleUrl: r = "", colorText: i = "#FFF", colorBg: a = "#000", colorAccent: o = "#FFC", indent: s = /(^\t*)(.*$)/, highlight: d = /!!!/ } = {}) {
-	let f = e.trim().split(/[\r\n]+/).filter((e) => e.trim()), p = [{
+function n(n, { preamble: r = !0, title: i = "", preambleUrl: a = "", colorText: o = "#FFF", colorBg: s = "#000", colorAccent: c = "#FFC", indent: l = /(^\t*)(.*$)/, highlight: u = /!!!/ } = {}) {
+	let d = n.trim().split(/[\r\n]+/).filter((e) => e.trim()), f = [{
 		summary: "hints",
 		detail: []
-	}], m = [p[0]], h = (e) => e[e.length - 1];
-	for (let e of f) {
-		let [, t, n] = e.split(s), r = t.length + 1;
-		for (r > m.length && m.push(h(h(m).detail)); r < m.length;) m.pop();
-		h(m).detail.push({
+	}], p = [f[0]], m = (e) => e[e.length - 1];
+	for (let e of d) {
+		let [, t, n] = e.split(l), r = t.length + 1;
+		for (r > p.length && p.push(m(m(p).detail)); r < p.length;) p.pop();
+		m(p).detail.push({
 			summary: n,
 			detail: []
 		});
 	}
-	let g = /* @__PURE__ */ new Set();
-	function _(e) {
-		let t = 0, n = "";
-		for (; !n && t < 100;) n = `h${c.createHash("shake256", { outputLength: Math.ceil(u(f.length, 8)) }).update(`${e}${t}`).digest("hex")}`, g.has(n) && (n = "", ++t);
-		return g.add(n), n;
+	let h = /* @__PURE__ */ new Set();
+	function g(e) {
+		let n = 0, r = "";
+		for (; !r && n < 100;) r = `h${t(`${e}${n}`)}`, h.has(r) && (r = "", ++n);
+		return h.add(r), r;
 	}
-	let v = (e, t) => {
+	let _ = (e, t) => {
 		let n = "	".repeat(t);
 		return e.detail.length > 0 ? `
-${n}<details id="${_(`${e.summary}.${t}`)}">
-${n}	<summary>${e.summary}${d?.exec(e.summary) ? "<span class=\"highlight\"></span>" : ""}</summary>
+${n}<details id="${g(`${e.summary}.${t}`)}">
+${n}	<summary>${e.summary}${u?.exec(e.summary) ? "<span class=\"highlight\"></span>" : ""}</summary>
 ${n}	<ul>${e.detail.map((e) => `
-${n}		<li>${v(e, t + 3)}
+${n}		<li>${_(e, t + 3)}
 ${n}		</li>`).join("")}
 ${n}	</ul>
 ${n}</details>` : `
@@ -92,16 +80,16 @@ ${n}${e.summary}`;
 
 <head>
 	<meta charset="utf-8" />
-	<title>${[n, "Hints"].filter((e) => e).join(" | ")}</title>
+	<title>${[i, "Hints"].filter((e) => e).join(" | ")}</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-	<meta name="theme-color" content="${a}">
-	<meta name="generator" content="${l.name} v${l.version}" />
+	<meta name="theme-color" content="${s}">
+	<meta name="generator" content="${e.name} v${e.version}" />
 
 	<style>
 		html {
-			--bg: ${a};
-			--text: ${i};
-			--accent: ${o};
+			--bg: ${s};
+			--text: ${o};
+			--accent: ${c};
 			background: var(--bg);
 			color: var(--text);
 			font-family: 'font', 'Courier New', Courier, monospace;
@@ -158,11 +146,11 @@ ${n}${e.summary}`;
 </head>
 
 <body>
-	<h1>${[n, "Hints"].filter((e) => e).join(" | ")}</h1>
+	<h1>${[i, "Hints"].filter((e) => e).join(" | ")}</h1>
 
-	${t ? `<p>This is a list of hints${n ? ` for ${r ? `<a href="${r}">${n}</a>` : n}` : ""}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>` : ""}
+	${r ? `<p>This is a list of hints${i ? ` for ${a ? `<a href="${a}">${i}</a>` : i}` : ""}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>` : ""}
 
-	${v(p[0], 1)}
+	${_(f[0], 1)}
 
 	<script>
 		let openingA = false;
@@ -205,4 +193,4 @@ ${n}${e.summary}`;
 `.trim();
 }
 //#endregion
-export { d as convert };
+export { n as convert };

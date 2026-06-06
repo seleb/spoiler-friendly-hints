@@ -1,6 +1,6 @@
 {
 	"name": "spoiler-friendly-hints",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "module",
 	"description": "Converts plaintext into a simple html format with nested collapsible sections",
 	"author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",

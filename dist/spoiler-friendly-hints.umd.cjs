@@ -1,8 +1,8 @@
-(function(e,t){typeof exports==`object`&&typeof module<`u`?t(exports):typeof define==`function`&&define.amd?define([`exports`],t):(e=typeof globalThis<`u`?globalThis:e||self,t(e[`spoiler-friendly-hints`]={}))})(this,function(e){Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});var t=Object.create,n=Object.defineProperty,r=Object.getOwnPropertyDescriptor,i=Object.getOwnPropertyNames,a=Object.getPrototypeOf,o=Object.prototype.hasOwnProperty,s=(e,t)=>()=>(t||(e((t={exports:{}}).exports,t),e=null),t.exports),c=(e,t,a,s)=>{if(t&&typeof t==`object`||typeof t==`function`)for(var c=i(t),l=0,u=c.length,d;l<u;l++)d=c[l],!o.call(e,d)&&d!==a&&n(e,d,{get:(e=>t[e]).bind(null,d),enumerable:!(s=r(t,d))||s.enumerable});return e},l=((e,r,i)=>(i=e==null?{}:t(a(e)),c(r||!e||!e.__esModule?n(i,`default`,{value:e,enumerable:!0}):i,e)))(s(((e,t)=>{t.exports={}}))(),1),u={name:`spoiler-friendly-hints`,version:`1.0.1`,type:`module`,description:`Converts plaintext into a simple html format with nested collapsible sections`,author:`Sean S. LeBlanc <sean.s.leblanc@gmail.com>`,license:`MIT`,repository:{type:`git`,url:`git+ssh://git@github.com/seleb/spoiler-friendly-hints.git`},keywords:[`hints`,`txt`,`plaintext`,`html`,`spoilers`],types:`./dist/src/index.d.ts`,main:`./dist/spoiler-friendly-hints.umd.cjs`,module:`./dist/spoiler-friendly-hints.js`,exports:{".":{import:`./dist/spoiler-friendly-hints.js`,require:`./dist/spoiler-friendly-hints.umd.cjs`}},files:[`dist/**`],scripts:{build:`vite build`,test:`vitest`,prepare:`npm run build`,preversion:`npm run build`},devDependencies:{"@types/node":`^25.9.2`,typescript:`^6.0.3`,"unplugin-dts":`^1.0.2`,vite:`^8.0.16`,vitest:`^4.1.8`}};function d(e,t){return Math.log10(e)/Math.log10(t)}function f(e,{preamble:t=!0,title:n=``,preambleUrl:r=``,colorText:i=`#FFF`,colorBg:a=`#000`,colorAccent:o=`#FFC`,indent:s=/(^\t*)(.*$)/,highlight:c=/!!!/}={}){let f=e.trim().split(/[\r\n]+/).filter(e=>e.trim()),p=[{summary:`hints`,detail:[]}],m=[p[0]],h=e=>e[e.length-1];for(let e of f){let[,t,n]=e.split(s),r=t.length+1;for(r>m.length&&m.push(h(h(m).detail));r<m.length;)m.pop();h(m).detail.push({summary:n,detail:[]})}let g=new Set;function _(e){let t=0,n=``;for(;!n&&t<100;)n=`h${l.createHash(`shake256`,{outputLength:Math.ceil(d(f.length,8))}).update(`${e}${t}`).digest(`hex`)}`,g.has(n)&&(n=``,++t);return g.add(n),n}let v=(e,t)=>{let n=`	`.repeat(t);return e.detail.length>0?`
-${n}<details id="${_(`${e.summary}.${t}`)}">
-${n}	<summary>${e.summary}${c?.exec(e.summary)?`<span class="highlight"></span>`:``}</summary>
+(function(e,t){typeof exports==`object`&&typeof module<`u`?t(exports):typeof define==`function`&&define.amd?define([`exports`],t):(e=typeof globalThis<`u`?globalThis:e||self,t(e[`spoiler-friendly-hints`]={}))})(this,function(e){Object.defineProperty(e,Symbol.toStringTag,{value:`Module`});var t={name:`spoiler-friendly-hints`,version:`1.0.2`,type:`module`,description:`Converts plaintext into a simple html format with nested collapsible sections`,author:`Sean S. LeBlanc <sean.s.leblanc@gmail.com>`,license:`MIT`,repository:{type:`git`,url:`git+ssh://git@github.com/seleb/spoiler-friendly-hints.git`},keywords:[`hints`,`txt`,`plaintext`,`html`,`spoilers`],types:`./dist/src/index.d.ts`,main:`./dist/spoiler-friendly-hints.umd.cjs`,module:`./dist/spoiler-friendly-hints.js`,exports:{".":{import:`./dist/spoiler-friendly-hints.js`,require:`./dist/spoiler-friendly-hints.umd.cjs`}},files:[`dist/**`],scripts:{build:`vite build`,test:`vitest`,prepare:`npm run build`,preversion:`npm run build`},devDependencies:{"@types/node":`^25.9.2`,typescript:`^6.0.3`,"unplugin-dts":`^1.0.2`,vite:`^8.0.16`,vitest:`^4.1.8`}};function n(e){return`${e.split(``).reduce((e,t)=>e+(t.charCodeAt(0)||0),0).toString(36)}${e.length.toString(36)}`}function r(e,{preamble:r=!0,title:i=``,preambleUrl:a=``,colorText:o=`#FFF`,colorBg:s=`#000`,colorAccent:c=`#FFC`,indent:l=/(^\t*)(.*$)/,highlight:u=/!!!/}={}){let d=e.trim().split(/[\r\n]+/).filter(e=>e.trim()),f=[{summary:`hints`,detail:[]}],p=[f[0]],m=e=>e[e.length-1];for(let e of d){let[,t,n]=e.split(l),r=t.length+1;for(r>p.length&&p.push(m(m(p).detail));r<p.length;)p.pop();m(p).detail.push({summary:n,detail:[]})}let h=new Set;function g(e){let t=0,r=``;for(;!r&&t<100;)r=`h${n(`${e}${t}`)}`,h.has(r)&&(r=``,++t);return h.add(r),r}let _=(e,t)=>{let n=`	`.repeat(t);return e.detail.length>0?`
+${n}<details id="${g(`${e.summary}.${t}`)}">
+${n}	<summary>${e.summary}${u?.exec(e.summary)?`<span class="highlight"></span>`:``}</summary>
 ${n}	<ul>${e.detail.map(e=>`
-${n}		<li>${v(e,t+3)}
+${n}		<li>${_(e,t+3)}
 ${n}		</li>`).join(``)}
 ${n}	</ul>
 ${n}</details>`:`
@@ -12,16 +12,16 @@ ${n}${e.summary}`};return`
 
 <head>
 	<meta charset="utf-8" />
-	<title>${[n,`Hints`].filter(e=>e).join(` | `)}</title>
+	<title>${[i,`Hints`].filter(e=>e).join(` | `)}</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-	<meta name="theme-color" content="${a}">
-	<meta name="generator" content="${u.name} v${u.version}" />
+	<meta name="theme-color" content="${s}">
+	<meta name="generator" content="${t.name} v${t.version}" />
 
 	<style>
 		html {
-			--bg: ${a};
-			--text: ${i};
-			--accent: ${o};
+			--bg: ${s};
+			--text: ${o};
+			--accent: ${c};
 			background: var(--bg);
 			color: var(--text);
 			font-family: 'font', 'Courier New', Courier, monospace;
@@ -78,11 +78,11 @@ ${n}${e.summary}`};return`
 </head>
 
 <body>
-	<h1>${[n,`Hints`].filter(e=>e).join(` | `)}</h1>
+	<h1>${[i,`Hints`].filter(e=>e).join(` | `)}</h1>
 
-	${t?`<p>This is a list of hints${n?` for ${r?`<a href="${r}">${n}</a>`:n}`:``}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>`:``}
+	${r?`<p>This is a list of hints${i?` for ${a?`<a href="${a}">${i}</a>`:i}`:``}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>`:``}
 
-	${v(p[0],1)}
+	${_(f[0],1)}
 
 	<script>
 		let openingA = false;
@@ -122,4 +122,4 @@ ${n}${e.summary}`};return`
 </body>
 
 </html>
-`.trim()}e.convert=f});
+`.trim()}e.convert=r});
