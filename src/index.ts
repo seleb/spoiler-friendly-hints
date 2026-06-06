@@ -1,17 +1,10 @@
-import * as crypto from 'crypto';
 import pkg from '../package.json';
 
-function logX(num: number, base: number): number {
-	return Math.log10(num) / Math.log10(base);
-}
-
-function hash(input: string, outputLength: number): string {
-	return crypto
-		.createHash('shake256', {
-			outputLength: outputLength,
-		})
-		.update(input)
-		.digest('hex');
+function hash(input: string): string {
+	return `${input
+		.split('')
+		.reduce((acc, i) => acc + (i.charCodeAt(0) || 0), 0)
+		.toString(36)}${input.length.toString(36)}`;
 }
 
 export function convert(text: string, {
@@ -67,7 +60,7 @@ export function convert(text: string, {
 		let extra = 0;
 		let id = '';
 		while (!id && extra < 100) {
-			id = `h${hash(`${input}${extra}`, Math.ceil(logX(lines.length, 8)))}`;
+			id = `h${hash(`${input}${extra}`)}`;
 			if (ids.has(id)) {
 				id = '';
 				++extra;
