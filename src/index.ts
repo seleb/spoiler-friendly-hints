@@ -5,6 +5,15 @@ function logX(num: number, base: number): number {
 	return Math.log10(num) / Math.log10(base);
 }
 
+function hash(input: string, outputLength: number): string {
+	return crypto
+		.createHash('shake256', {
+			outputLength: outputLength,
+		})
+		.update(input)
+		.digest('hex');
+}
+
 export function convert(text: string, {
 	preamble = true,
 	title = '',
@@ -58,12 +67,7 @@ export function convert(text: string, {
 		let extra = 0;
 		let id = '';
 		while (!id && extra < 100) {
-			id = `h${crypto
-				.createHash('shake256', {
-					outputLength: Math.ceil(logX(lines.length, 8)),
-				})
-				.update(`${input}${extra}`)
-				.digest('hex')}`;
+			id = `h${hash(`${input}${extra}`, Math.ceil(logX(lines.length, 8)))}`;
 			if (ids.has(id)) {
 				id = '';
 				++extra;
