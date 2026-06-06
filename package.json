@@ -22,7 +22,8 @@
 	"exports": {
 		".": {
 			"import": "./dist/spoiler-friendly-hints.js",
-			"require": "./dist/spoiler-friendly-hints.umd.cjs"
+			"require": "./dist/spoiler-friendly-hints.umd.cjs",
+			"types": "./dist/src/index.d.ts"
 		}
 	},
 	"files": [
