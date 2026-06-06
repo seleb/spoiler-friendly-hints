@@ -12,7 +12,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	t.exports = {};
 })))(), 1), l = {
 	name: "spoiler-friendly-hints",
-	version: "1.0.0",
+	version: "1.0.1",
 	type: "module",
 	description: "Converts plaintext into a simple html format with nested collapsible sections",
 	author: "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -28,7 +28,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		"html",
 		"spoilers"
 	],
-	types: "./dist/index.d.ts",
+	types: "./dist/src/index.d.ts",
 	main: "./dist/spoiler-friendly-hints.umd.cjs",
 	module: "./dist/spoiler-friendly-hints.js",
 	exports: { ".": {
