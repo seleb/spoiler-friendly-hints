@@ -37,7 +37,7 @@ export function convert(text: string, {
 		.filter((i) => i.trim());
 
 	type Hint = { summary: string; detail: Hint[] };
-	const hints: Hint[] = [{ summary: 'hints', detail: [] }];
+	const hints: Hint[] = [{ summary: '', detail: [] }];
 	const stack = [hints[0]];
 
 	const tail = <T>(a: T[]): T => a[a.length - 1];
@@ -167,7 +167,7 @@ ${t}${hint.summary}`;
 
 	${preamble ? `<p>This is a list of hints${title ? ` for ${preambleUrl ? `<a href="${preambleUrl}">${title}</a>` : title}` : ''}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>` : ''}
 
-	${renderHint(hints[0], 1)}
+	${hints[0].detail.map(i => renderHint(i, 1)).join('\n')}
 
 	<script>
 		let openingA = false;

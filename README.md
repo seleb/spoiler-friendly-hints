@@ -32,14 +32,14 @@ How you format the text is entirely up to you. You might use a question and answ
 #### Sample input
 
 ```txt
-Did you check under the sofa?
-	It's not there.
-Did you check by the entrance?
-	It's not there.
-Did you check inside the bathroom?
-	Did you shut the door after you?
-		!!! Did you check every surface?
-			It's in the bathroom, behind the door, on the back wall.
+	Did you check under the sofa?
+		It's not there.
+	Did you check by the entrance?
+		It's not there.
+	Did you check inside the bathroom?
+		Did you shut the door after you?
+			!!! Did you check every surface?
+				It's in the bathroom, behind the door, on the back wall.
 ```
 
 #### Sample output
