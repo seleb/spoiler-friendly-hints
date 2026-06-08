@@ -167,7 +167,9 @@ ${t}${hint.summary}`;
 
 	${preamble ? `<p>This is a list of hints${title ? ` for ${preambleUrl ? `<a href="${preambleUrl}">${title}</a>` : title}` : ''}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>` : ''}
 
-	${hints[0].detail.map(i => renderHint(i, 1)).join('\n')}
+	${hints[0].detail.length > 1 ? `<ul>` : ''}
+	${hints[0].detail.map(i => hints[0].detail.length > 1 ? `\t<li>${renderHint(i, 3)}\n\t\t</li>` : renderHint(i, 1)).join('\n\t')}
+	${hints[0].detail.length > 1 ? `</ul>` : ''}
 
 	<script>
 		let openingA = false;

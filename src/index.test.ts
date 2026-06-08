@@ -49,6 +49,8 @@ second top-level hints
     baz
       !!! bar
         foo
+plaintext a
+plaintext b
 `;
 		await expect(convert(input, {
 			preamble: true,
