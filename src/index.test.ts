@@ -43,6 +43,12 @@ hints
     baz
       !!! alice
         bob
+second top-level hints
+  bob
+    alice
+    baz
+      !!! bar
+        foo
 `;
 		await expect(convert(input, {
 			preamble: true,
