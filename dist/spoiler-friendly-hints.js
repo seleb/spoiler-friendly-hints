@@ -1,6 +1,6 @@
 var e = {
 	name: "spoiler-friendly-hints",
-	version: "1.0.3",
+	version: "1.0.4",
 	type: "module",
 	description: "Converts plaintext into a simple html format with nested collapsible sections",
 	author: "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -46,7 +46,7 @@ function t(e) {
 }
 function n(n, { preamble: r = !0, title: i = "", preambleUrl: a = "", colorText: o = "#FFF", colorBg: s = "#000", colorAccent: c = "#FFC", indent: l = /(^\t*)(.*$)/, highlight: u = /!!!/ } = {}) {
 	let d = n.trim().split(/[\r\n]+/).filter((e) => e.trim()), f = [{
-		summary: "hints",
+		summary: "",
 		detail: []
 	}], p = [f[0]], m = (e) => e[e.length - 1];
 	for (let e of d) {
@@ -151,7 +151,7 @@ ${n}${e.summary}`;
 
 	${r ? `<p>This is a list of hints${i ? ` for ${a ? `<a href="${a}">${i}</a>` : i}` : ""}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>` : ""}
 
-	${_(f[0], 1)}
+	${f[0].detail.map((e) => _(e, 1)).join("\n")}
 
 	<script>
 		let openingA = false;
