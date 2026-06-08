@@ -1,6 +1,6 @@
 var e = {
 	name: "spoiler-friendly-hints",
-	version: "1.0.4",
+	version: "1.0.5",
 	type: "module",
 	description: "Converts plaintext into a simple html format with nested collapsible sections",
 	author: "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -151,7 +151,9 @@ ${n}${e.summary}`;
 
 	${r ? `<p>This is a list of hints${i ? ` for ${a ? `<a href="${a}">${i}</a>` : i}` : ""}. These hints start out vague and get more specific the deeper you expand in order to try to help you get unstuck while trying to avoid spoiling full solutions.</p>` : ""}
 
-	${f[0].detail.map((e) => _(e, 1)).join("\n")}
+	${f[0].detail.length > 1 ? "<ul>" : ""}
+	${f[0].detail.map((e) => f[0].detail.length > 1 ? `\t<li>${_(e, 3)}\n\t\t</li>` : _(e, 1)).join("\n	")}
+	${f[0].detail.length > 1 ? "</ul>" : ""}
 
 	<script>
 		let openingA = false;
