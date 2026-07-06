@@ -122,6 +122,7 @@ ${t}${hint.summary}`;
 
 		li {
 			font-style: italic;
+			min-width: 10em;
 		}
 
 		details {
