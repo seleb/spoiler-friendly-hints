@@ -1,6 +1,6 @@
 var e = {
 	name: "spoiler-friendly-hints",
-	version: "1.0.5",
+	version: "1.0.6",
 	type: "module",
 	description: "Converts plaintext into a simple html format with nested collapsible sections",
 	author: "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
@@ -106,6 +106,7 @@ ${n}${e.summary}`;
 
 		li {
 			font-style: italic;
+			min-width: 10em;
 		}
 
 		details {
